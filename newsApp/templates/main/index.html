@@ -10,33 +10,100 @@
     crossorigin="anonymous" />
   <title>News App</title>
   <style>
-    #crd:hover
-    {
-      background-color: grey;
+    body{
+        background-color: hotpink;
+      }
+    #crd{
+      color:black;
+      background-color: white;
+    }
+    #crd:hover {
+      
+    }
+    #readmore{
+      background-color: blue;
+      color: white;
+      border:1px solid blue; 
+      border-radius: 0px;
+    }
+    #readmore:hover{
+      background-color: transparent; 
+      color:blue; 
+    }
+
+    #saved{
+      background-color:green;
+      color: white;
+      border:1px solid green; 
+      border-radius: 0px;
+    }
+    #saved:hover{
+      background-color: transparent; 
+      color:green; 
+
+    }
+
+    @media only screen and (max-width: 600px) {
+      #nbar {
+        display: none;
+      }
+      
     }
   </style>
 </head>
 
-<body>
+<body style = "background-color: snow;">
   <div class="navbar fixed-top navbar-dark bg-dark">
     <div class="container">
-      <h4 style="color:rgb(255, 255, 255)">News App <h4 style="color: rgb(154, 255, 0);">NewsApp</h4>
-      </h4>
+      <h4 style="color: rgb(154, 255, 0); margin:0px; padding:0px;">NewsApp</h4>
       <!-- <img src="{% static 'images/background.gif' %}" class="image" style="width:90px; "> -->
     </div>
   </div>
 
   <!-- Card for header -->
 
-  <div class="jumbotron" style="text-align: center; margin-top:40px; width:100%;">
+  <!-- <div class="jumbotron" style="text-align: center; margin-top:40px; width:100%;">
     <h2>Catchup with Latest News</h2>
-    <!-- <img src="{% static 'images/news.png' %}" class="image" style="width:150px; margin-bottom:-50px; "> -->
-  </div>
+  <img src="https://source.unsplash.com/1500x100/?news,dark" class="image" style="width:100%; margin-bottom:-50px; "> 
+  </div> -->
+  <div style="width:100%; height:10vh;"></div>
+
+  <!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style = "width:30%; height: 10vh;">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://source.unsplash.com/100x100/?nature,water" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://source.unsplash.com/100x100/?nature,water" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="https://source.unsplash.com/100x100/?nature,water" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div> -->
 
 
   <div style="display: flex;">
     <!-- this is navbar div -->
-    <div style="width:20%;">
+    <div id="nbar" style="width:20%; background-color: blueviolet;">
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <a class="nav-link " id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
           aria-controls="v-pills-home" aria-selected="false">Home</a>
@@ -62,22 +129,22 @@
 
 
     <!-- this is content div -->
-    <div style="display: flex; flex-direction: row;  flex-wrap: wrap; width:80%;">
+    <div style="display: flex; flex-direction: row;  flex-wrap: wrap; width:80%; margin:auto;">
       {% for idd, hl, des, img in mylist %}
       <!-- card -->
-      <div id = "crd" class="card" style="width: 20rem; margin: auto; margin-bottom: 5vh;" >
+      <div id="crd" class="card" style="width: 20rem; height:25rem; margin: auto; margin-bottom: 5vh;">
         <img class="card-img-top" src="{{ img }}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{ hl }}{{ value|linebreaks }}</h5>
         </div>
-        <p class="card-text" style="text-align: center;">{{ des }}{{ value|linebreaks }}</p>
+        <!-- <p class="card-text" style="text-align: center;">{{ des }}{{ value|linebreaks }}</p> -->
         <div style="display: flex; flex-wrap: wrap; flex-direction: row;">
           <form action="readmore" style="margin:auto;">
-            <input type="submit" class="btn btn-primary" style="margin:auto;" value="Read more">
+            <input id = "readmore" type="submit" class="btn btn-primary" style="margin:auto; width: 8rem; " value="Read more">
           </form>
           <form action="save" style="margin:auto;">
             <input type=text value="{{ idd }}" style="display: none;" name="ib">
-            <input type="submit" class="btn btn-success" style="margin:auto;" value="Save">
+            <input id = "saved" type="submit" class="btn btn-success" style="margin:auto; width:8rem;" value="Save">
           </form>
         </div>
       </div>
